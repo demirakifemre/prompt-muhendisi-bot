@@ -71,14 +71,11 @@ Proje sonucunda, kullanıcı tarafından sağlanan herhangi bir görseli analiz 
 
 Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
 
-## 🔧 Kodun Çalışma Kılavuzu
-
-Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
-
 ### 1. Projeyi Klonlayın
+
 Projeyi GitHub'dan bilgisayarınıza indirin ve proje klasörüne gidin:
 ```bash
-git clone [https://github.com/](https://github.com/)demirakifemre/prompt_muhendisi_bot.git
+git clone [https://github.com/](https://github.com/)[SENIN-KULLANICI-ADIN]/prompt_muhendisi_bot.git
 cd prompt_muhendisi_bot
 2. Sanal Ortam Oluşturun ve Aktif Edin
 Projenin bağımlılıklarını yönetmek için bir sanal ortam oluşturun ve aktif hale getirin:
@@ -110,8 +107,6 @@ Bash
 streamlit run app.py
 Uygulama tarayıcınızda varsayılan olarak http://localhost:8501 adresinde açılacaktır.
 
-
-Bu son düzeltmeyle birlikte `README.md` dosyan hem içerik hem de format olarak kusursuz oldu. Şimdi bu güncel halini GitHub'a gönderebiliriz. 👍
 ## 🌐 Web Arayüzü & Product Kılavuzu
 
 * **Deploy Linki:** `[...Deploy linki...]`
