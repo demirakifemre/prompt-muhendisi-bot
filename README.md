@@ -71,41 +71,46 @@ Proje sonucunda, kullanıcı tarafından sağlanan herhangi bir görseli analiz 
 
 Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
 
-### 1. Projeyi Klonlayın
+1.  **Projeyi Klonlayın**
 
-Projeyi GitHub'dan bilgisayarınıza indirin ve proje klasörüne gidin:
-```bash
-git clone [https://github.com/](https://github.com/)[SENIN-KULLANICI-ADIN]/prompt_muhendisi_bot.git
-cd prompt_muhendisi_bot
-### 2. Sanal Ortam Oluşturun ve Aktif Edin
-Projenin bağımlılıklarını yönetmek için bir sanal ortam oluşturun ve aktif hale getirin:
+    Projeyi GitHub'dan bilgisayarınıza indirin ve proje klasörüne gidin:
+    ```bash
+    git clone [https://github.com/](https://github.com/)demirakifemre/prompt_muhendisi_bot.git
+    cd prompt_muhendisi_bot
+    ```
 
-Bash
+2.  **Sanal Ortam Oluşturun ve Aktif Edin**
 
-# Windows
-python -m venv venv
-.\venv\Scripts\activate
-(Mac/Linux kullanıyorsanız source venv/bin/activate komutunu kullanın.)
+    Projenin bağımlılıklarını yönetmek için bir sanal ortam oluşturun ve aktif hale getirin:
+    ```bash
+    # Windows
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
+    *(Mac/Linux kullanıyorsanız `source venv/bin/activate` komutunu kullanın.)*
 
-### 3. Gerekli Kütüphaneleri Yükleyin
-Projenin ihtiyaç duyduğu tüm kütüphaneleri requirements.txt dosyasından yükleyin:
+3.  **Gerekli Kütüphaneleri Yükleyin**
 
-Bash
+    Projenin ihtiyaç duyduğu tüm kütüphaneleri `requirements.txt` dosyasından yükleyin:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-pip install -r requirements.txt
-### 4. API Anahtarınızı Ekleyin
-Proje ana dizininde .env adında bir dosya oluşturun. İçine Google AI Studio'dan aldığınız API anahtarınızı aşağıdaki formatta ekleyin:
+4.  **API Anahtarınızı Ekleyin**
 
-GOOGLE_API_KEY="AIzaSy..."
-(Bu dosyanın .gitignore içinde olduğundan emin olun, API anahtarınızı asla GitHub'a yüklemeyin.)
+    Proje ana dizininde `.env` adında bir dosya oluşturun. İçine Google AI Studio'dan aldığınız API anahtarınızı aşağıdaki formatta ekleyin:
+    ```
+    GOOGLE_API_KEY="AIzaSy..."
+    ```
+    *(Bu dosyanın `.gitignore` içinde olduğundan emin olun, API anahtarınızı asla GitHub'a yüklemeyin.)*
 
-### 5. Uygulamayı Başlatın
-Streamlit uygulamasını başlatın:
+5.  **Uygulamayı Başlatın**
 
-Bash
-
-streamlit run app.py
-Uygulama tarayıcınızda varsayılan olarak http://localhost:8501 adresinde açılacaktır.
+    Streamlit uygulamasını başlatın:
+    ```bash
+    streamlit run app.py
+    ```
+    Uygulama tarayıcınızda varsayılan olarak `http://localhost:8501` adresinde açılacaktır.
 
 ## 🌐 Web Arayüzü & Product Kılavuzu
 
