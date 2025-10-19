@@ -1,33 +1,4 @@
 import streamlit as st
-import os # os modülünü de import edelim
-
-# --- GEÇİCİ TEŞHİS KODU ---
-st.write("--- TEŞHİS BAŞLANGIÇ ---")
-st.write("Streamlit Secrets Nesnesi:")
-st.write(st.secrets) # Secrets nesnesinin tamamını yazdır
-
-try:
-    st.write("Secrets içinden GOOGLE_API_KEY okunuyor...")
-    test_key = st.secrets["GOOGLE_API_KEY"]
-    st.write(f"GOOGLE_API_KEY bulundu! İlk 5 karakter: {test_key[:5]}...")
-    st.success("Secrets['GOOGLE_API_KEY'] başarıyla okundu.")
-except Exception as e:
-    st.write(f"HATA: st.secrets['GOOGLE_API_KEY'] okunurken hata oluştu: {e}")
-    st.error("Secrets['GOOGLE_API_KEY'] OKUNAMADI!")
-
-st.write("Ortam değişkeni (os.getenv) deneniyor...")
-test_key_env = os.getenv("GOOGLE_API_KEY")
-if test_key_env:
-     st.write(f"os.getenv ile anahtar bulundu! İlk 5 karakter: {test_key_env[:5]}...")
-else:
-     st.write("os.getenv ile anahtar BULUNAMADI.")
-
-st.write("--- TEŞHİS BİTTİ ---")
-st.divider()
-# --- ---
-
-from PIL import Image
-# ... (kodun geri kalanı aşağıda devam ediyor) ...
 from PIL import Image
 import google.generativeai as genai
 import os
@@ -56,30 +27,13 @@ def load_lottieurl(url: str):
 
 # --- UYGULAMA YAPILANDIRMASI VE BAŞLANGIÇ AYARLARI ---
 
-# API Anahtarını Okuma Mantığı (Streamlit Cloud & Lokal Uyumlu)
-api_key = None
-try:
-    # Önce Streamlit Cloud Secrets'ı dene
-    api_key = st.secrets["GOOGLE_API_KEY"]
-    print("API Anahtarı Streamlit Secrets'tan okundu.")
-except (FileNotFoundError, KeyError): # Hem dosya yoksa hem de anahtar yoksa yakala
-    # Eğer Secrets yoksa (yani lokalde çalışıyorsak) veya anahtar bulunamazsa, .env dosyasını dene
-    print("Streamlit Secrets bulunamadı veya anahtar eksik, .env dosyası deneniyor...")
-    load_dotenv()
-    api_key = os.getenv("GOOGLE_API_KEY")
-    if api_key:
-        print("API Anahtarı .env dosyasından okundu.")
-    else:
-        print("HATA: .env dosyasında da API Anahtarı bulunamadı!")
-        st.error("HATA: API Anahtarı bulunamadı! Lütfen .env dosyasını (lokal) veya Streamlit Secrets ayarlarını (cloud) kontrol edin.")
-
 # GÜNCELLENMİŞ API ANAHTARI OKUMA YÖNTEMİ
 api_key = None
 try:
-    # Doğrudan st.secrets kullanmayı dene
-    api_key = st.secrets["GOOGLE_API_KEY"]
-    print("API Anahtarı Streamlit Secrets'tan okundu (st.secrets ile).")
-except Exception as e: # Genel bir hata yakalama (KeyError, FileNotFoundError vb.)
+    # Doğru Erişim: st.secrets içindeki "secrets" sözlüğünden oku
+    api_key = st.secrets["secrets"]["GOOGLE_API_KEY"] # <<< DEĞİŞİKLİK BURADA!
+    print("API Anahtarı Streamlit Secrets'tan okundu (iç içe yapıdan).") 
+except Exception as e: # Genel bir hata yakalama
     print(f"st.secrets ile okuma başarısız ({e}), .env deneniyor...")
     load_dotenv()
     api_key = os.getenv("GOOGLE_API_KEY")
@@ -89,6 +43,17 @@ except Exception as e: # Genel bir hata yakalama (KeyError, FileNotFoundError vb
         print("HATA: API Anahtarı ne Secrets'ta ne de .env'de bulunamadı!")
         st.error("HATA: API Anahtarı bulunamadı!")
 
+# Google Generative AI istemcisini yapılandır
+if api_key:
+    try:
+        genai.configure(api_key=api_key)
+        # Teşhis kodunu kaldırabiliriz artık
+        # st.success("Google AI başarıyla yapılandırıldı.") 
+    except Exception as e:
+        st.error(f"API anahtarı yapılandırılamadı. Hata: {e}")
+else:
+    st.error("Uygulama başlatılamadı: API Anahtarı eksik.")
+    st.stop()
 # Google Generative AI istemcisini yapılandır
 if api_key:
     try:
