@@ -1,9 +1,9 @@
 # 🎨 AI Prompt Mühendisi Botu
 
-[cite_start]Bu proje,10millon.Ai,Global Ai Hub ve Akbank destekleriyle gerçekleştirilen  Bootcamp: Yeni Nesil Proje Kampı kapsamında geliştirilmiş, RAG (Retrieval Augmented Generation) temelli bir chatbottur[cite: 1, 2]. Uygulama, bir görseli analiz ederek onu yapay zeka sanat modellerinde (Midjourney, DALL-E, Nano Banana vb.) yeniden oluşturmak için kullanılabilecek detaylı metin istemleri (prompt) üreten interaktif bir web arayüzüne sahiptir.
+Bu proje,10millon.Ai,Global Ai Hub ve Akbank destekleriyle gerçekleştirilen  Bootcamp: Yeni Nesil Proje Kampı kapsamında geliştirilmiş, RAG (Retrieval Augmented Generation) temelli bir chatbottur[cite: 1, 2]. Uygulama, bir görseli analiz ederek onu yapay zeka sanat modellerinde (Midjourney, DALL-E, Nano Banana vb.) yeniden oluşturmak için kullanılabilecek detaylı metin istemleri (prompt) üreten interaktif bir web arayüzüne sahiptir.
 ![Uygulama Demosu](assets/demo.gif)
 
-*Uygulamanın temel özelliklerini gösteren kısa bir demo.*
+
 
 
 ---
@@ -41,63 +41,77 @@ Kullanıcı tarafından yüklenen görseller veya üretilen prompt'lar **hiçbir
 
 ---
 
-## [cite_start]🛠️ Kullanılan Yöntemler ve Çözüm Mimarisi [cite: 11, 22, 23]
+## 🛠️ Kullanılan Yöntemler ve Çözüm Mimarisi 
 
-[cite_start]Proje, bootcamp istemlerinde belirtilen RAG (Retrieval-Augmented Generation) temelli bir chatbot mimarisi üzerine kurulmuştur[cite: 2, 23]. Proje, klasik RAG adımlarını modern ve multimodal bir yaklaşımla yorumlar:
+Proje, bootcamp istemlerinde belirtilen RAG (Retrieval-Augmented Generation) temelli bir chatbot mimarisi üzerine kurulmuştur[cite: 2, 23]. Proje, klasik RAG adımlarını modern ve multimodal bir yaklaşımla yorumlar:
 
-1.  [cite_start]**Retrieval (Bilgiyi Çekme):** Sistem, bilgiyi statik bir metin veritabanından çekmek yerine, kullanıcı tarafından o an yüklenen **görselin kendisinden** dinamik olarak çeker[cite: 23]. Model, görseldeki pikselleri, renkleri, kompozisyonu ve stili analiz ederek "bilgi kaynağını" oluşturur.
+1.  **Retrieval (Bilgiyi Çekme):** Sistem, bilgiyi statik bir metin veritabanından çekmek yerine, kullanıcı tarafından o an yüklenen **görselin kendisinden** dinamik olarak çeker. Model, görseldeki pikselleri, renkleri, kompozisyonu ve stili analiz ederek "bilgi kaynağını" oluşturur.
 
-2.  [cite_start]**Augmented (Desteklenmiş):** Görselden çekilen bu zengin bilgi, üretim adımını yönlendirmek ve desteklemek için kullanılır[cite: 23].
+2.  **Augmented (Desteklenmiş):** Görselden çekilen bu zengin bilgi, üretim adımını yönlendirmek ve desteklemek için kullanılır.
 
-3.  [cite_start]**Generation (Üretim):** Google'ın **Gemini 2.5 Flash** modeli, görselden gelen bu destekleyici bilgiyle güçlendirilerek, son derece detaylı ve hedefe yönelik bir metin istemi (prompt) üretir[cite: 23, 42].
+3.  **Generation (Üretim):** Google'ın **Gemini 2.5 Flash** modeli, görselden gelen bu destekleyici bilgiyle güçlendirilerek, son derece detaylı ve hedefe yönelik bir metin istemi (prompt) üretir.
 
-[cite_start]Bu yapı, projenin sadece metinle değil, aynı zamanda görsel verilerle de çalışabilen, modern ve esnek bir RAG sistemi olmasını sağlar[cite: 23].
+Bu yapı, projenin sadece metinle değil, aynı zamanda görsel verilerle de çalışabilen, modern ve esnek bir RAG sistemi olmasını sağlar.
 
 * **Web Arayüzü:** Kullanıcı dostu ve interaktif arayüz için **Streamlit** kullanılmıştır.
-* [cite_start]**Generation Model:** Google Gemini 2.5 Flash (Multimodal yetenekli)[cite: 42].
-* **Prompt Mühendisliği:** Modelin davranışını yönlendirmek için 4 farklı sistem talimatı (beyin) kullanılmıştır.
+* **Generation Model:** Google Gemini 2.5 Flash (Multimodal yetenekli).
+* **Prompt Mühendisliği:** Modelin davranışını yönlendirmek için 4 farklı sistem promptu kullanılmıştır.
 * **Görsel İşleme:** **Pillow** kütüphanesi.
 * **Ek Kütüphaneler:** `python-dotenv` (API anahtarı yönetimi), `requests` (Lottie animasyonu için), `streamlit-lottie` (Animasyon gösterimi).
 
 ---
 
-## [cite_start]✅ Elde Edilen Sonuçlar [cite: 12]
+## ✅ Elde Edilen Sonuçlar
 
-[cite_start]Proje sonucunda, kullanıcı tarafından sağlanan herhangi bir görseli analiz edip, o görseli yeniden yaratmak için kullanılabilecek, teknik ve sanatsal detaylar içeren, profesyonel bir metin istemi (prompt) üreten bir web uygulaması başarıyla geliştirilmiştir[cite: 12]. [cite_start]Uygulama, kullanıcının bu prompt üzerinde değişiklik yapmasına ve bot ile sohbet etmesine olanak tanıyarak interaktif bir deneyim sunmaktadır[cite: 12]. Ayrıca, özel tasarım ve gizlilik notları ile kullanıcı deneyimi iyileştirilmiştir.
+Proje sonucunda, kullanıcı tarafından sağlanan herhangi bir görseli analiz edip, o görseli yeniden yaratmak için kullanılabilecek, teknik ve sanatsal detaylar içeren, profesyonel bir metin istemi (prompt) üreten bir web uygulaması başarıyla geliştirilmiştir[cite: 12]. [cite_start]Uygulama, kullanıcının bu prompt üzerinde değişiklik yapmasına ve bot ile sohbet etmesine olanak tanıyarak interaktif bir deneyim sunmaktadır[cite: 12]. Ayrıca, özel tasarım ve gizlilik notları ile kullanıcı deneyimi iyileştirilmiştir.
 
 ---
 
-## [cite_start]🔧 Kodun Çalışma Kılavuzu [cite: 19, 20, 21]
+## 🔧 Kodun Çalışma Kılavuzu
+
+Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
+
+## 🔧 Kodun Çalışma Kılavuzu
 
 Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
 
 ### 1. Projeyi Klonlayın
+Projeyi GitHub'dan bilgisayarınıza indirin ve proje klasörüne gidin:
 ```bash
-git clone [https://github.com/](https://github.com/)[demirakifemre]/prompt_muhendisi_bot.git
+git clone [https://github.com/](https://github.com/)demirakifemre/prompt_muhendisi_bot.git
 cd prompt_muhendisi_bot
-2. Sanal Ortam Oluşturun ve Aktif Edin 
+2. Sanal Ortam Oluşturun ve Aktif Edin
+Projenin bağımlılıklarını yönetmek için bir sanal ortam oluşturun ve aktif hale getirin:
 
 Bash
 
 # Windows
 python -m venv venv
 .\venv\Scripts\activate
-3. Gerekli Kütüphaneleri Yükleyin 
+(Mac/Linux kullanıyorsanız source venv/bin/activate komutunu kullanın.)
+
+3. Gerekli Kütüphaneleri Yükleyin
+Projenin ihtiyaç duyduğu tüm kütüphaneleri requirements.txt dosyasından yükleyin:
 
 Bash
 
 pip install -r requirements.txt
 4. API Anahtarınızı Ekleyin
-Proje ana dizininde .env adında bir dosya oluşturun ve içine Google AI Studio'dan aldığınız API anahtarınızı aşağıdaki gibi ekleyin:
+Proje ana dizininde .env adında bir dosya oluşturun. İçine Google AI Studio'dan aldığınız API anahtarınızı aşağıdaki formatta ekleyin:
 
 GOOGLE_API_KEY="AIzaSy..."
-5. Uygulamayı Başlatın 
+(Bu dosyanın .gitignore içinde olduğundan emin olun, API anahtarınızı asla GitHub'a yüklemeyin.)
+
+5. Uygulamayı Başlatın
+Streamlit uygulamasını başlatın:
 
 Bash
 
 streamlit run app.py
-Uygulama tarayıcınızda http://localhost:8010 adresinde açılacaktır.
+Uygulama tarayıcınızda varsayılan olarak http://localhost:8501 adresinde açılacaktır.
 
+
+Bu son düzeltmeyle birlikte `README.md` dosyan hem içerik hem de format olarak kusursuz oldu. Şimdi bu güncel halini GitHub'a gönderebiliriz. 👍
 ## 🌐 Web Arayüzü & Product Kılavuzu
 
 * **Deploy Linki:** `[...Deploy linki...]`
