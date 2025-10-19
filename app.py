@@ -2,20 +2,7 @@ import streamlit as st
 from PIL import Image
 import google.generativeai as genai
 import os
-from dotenv import load_dotenv
-# --- GEÇİCİ TEST KODU ---
-print("--- API Anahtarı Testi Başlıyor ---")
-load_dotenv() # .env dosyasını yüklemeyi dene (Cloud'da başarısız olacak)
-api_key_test = os.getenv("GOOGLE_API_KEY")
-
-if api_key_test:
-    print(f"API Anahtarı bulundu! İlk 5 karakter: {api_key_test[:5]}...") # Anahtarın tamamını yazdırma!
-    st.success("API Anahtarı ortam değişkenlerinden başarıyla okundu.") # Ekranda da görelim
-else:
-    print("HATA: API Anahtarı ortam değişkenlerinde bulunamadı!")
-    st.error("HATA: API Anahtarı ortam değişkenlerinde bulunamadı! Lütfen Streamlit Secrets ayarlarını kontrol edin.")
-print("--- API Anahtarı Testi Bitti ---")
-# --- GEÇİCİ TEST KODU BİTTİ ---
+from dotenv import load_dotenv # Lokal .env dosyası için hala gerekli
 from streamlit_lottie import st_lottie
 import requests
 
@@ -29,7 +16,7 @@ def local_css(file_name):
     except FileNotFoundError:
         st.error(f"'{file_name}' stil dosyası bulunamadı.")
     except Exception as e:
-        st.error(f"Stil dosyası okunurken hata oluştu: {e}")
+         st.error(f"Stil dosyası okunurken hata oluştu: {e}")
 
 def load_lottieurl(url: str):
     """Verilen URL'den bir Lottie animasyonunu yükler."""
@@ -40,15 +27,33 @@ def load_lottieurl(url: str):
 
 # --- UYGULAMA YAPILANDIRMASI VE BAŞLANGIÇ AYARLARI ---
 
-# .env dosyasından ortam değişkenlerini (API anahtarı) yükle
-load_dotenv()
-api_key = os.getenv("GOOGLE_API_KEY")
-
-# Google Generative AI istemcisini yapılandır
+# API Anahtarını Okuma Mantığı (Streamlit Cloud & Lokal Uyumlu)
+api_key = None
 try:
-    genai.configure(api_key=api_key)
-except Exception as e:
-    st.error(f"API anahtarı yapılandırılamadı. Lütfen .env dosyasını kontrol edin. Hata: {e}")
+    # Önce Streamlit Cloud Secrets'ı dene
+    api_key = st.secrets["GOOGLE_API_KEY"]
+    print("API Anahtarı Streamlit Secrets'tan okundu.")
+except (FileNotFoundError, KeyError): # Hem dosya yoksa hem de anahtar yoksa yakala
+    # Eğer Secrets yoksa (yani lokalde çalışıyorsak) veya anahtar bulunamazsa, .env dosyasını dene
+    print("Streamlit Secrets bulunamadı veya anahtar eksik, .env dosyası deneniyor...")
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if api_key:
+        print("API Anahtarı .env dosyasından okundu.")
+    else:
+        print("HATA: .env dosyasında da API Anahtarı bulunamadı!")
+        st.error("HATA: API Anahtarı bulunamadı! Lütfen .env dosyasını (lokal) veya Streamlit Secrets ayarlarını (cloud) kontrol edin.")
+
+# Google Generative AI istemcisini yapılandır (sadece api_key bulunduysa)
+if api_key:
+    try:
+        genai.configure(api_key=api_key)
+    except Exception as e:
+        st.error(f"API anahtarı yapılandırılamadı. Hata: {e}")
+else:
+    st.error("Uygulama başlatılamadı: API Anahtarı eksik.")
+    st.stop() # API anahtarı yoksa uygulamayı durdur
+
 
 # Modelin güvenlik filtrelerini daha esnek bir seviyeye ayarla
 safety_settings = [
@@ -66,7 +71,7 @@ model = genai.GenerativeModel('gemini-2.5-flash')
 # BEYİN 1: Görselden prompt üreten ana sistem talimatı
 system_prompt_generator = """
 Sen, usta bir fotoğrafçı ve bir prompt mühendisisin. Sana yüklenen görseli bir sanat eseri gibi en ince detayına kadar analiz et. 
-Işığı, renk paletini, kompozisyonu, objeleri, sanatsal stili ve duyguyu incele.
+Işığı (örn: dramatik, yumuşak, stüdyo ışığı), renk paletini, kompozisyonu (örn: altın oran, simetri), objeleri, sanatsal stili (örn: fütüristik, siberpunk, fotorealistik) ve görselin uyandırdığı duyguyu incele.
 Bu analize dayanarak, bu görseli Midjourney gibi bir yapay zeka modelinde yeniden oluşturabilecek, son derece detaylı ve profesyonel bir prompt üret. 
 Bu prompt'ta diyafram (f-stop), ISO, lens türü (örn: 85mm f/1.8) gibi teknik detayları görselin tarzına göre **tahmin ederek** ekle.
 Sonuna `--ar 16:9 --v 6.0` gibi ekstra parametreler ekle.
@@ -75,7 +80,7 @@ Sonuna `--ar 16:9 --v 6.0` gibi ekstra parametreler ekle.
 
 # BEYİN 2: Mevcut bir prompt'u düzenleyen sistem talimatı
 system_prompt_modifier = """
-Sen, bir prompt mühendisi asistanısın. Görevin, sana verilen bir ana prompt'u, kullanıcının isteği doğrultusunda düzenlemektir.
+Sen, bir prompt mühendisi asistanısın. Görevin, sana verilen bir ana prompt'u, kullanıcının isteği doğrustusunda düzenlemektir.
 Kullanıcının isteğini dikkatlice anla ve ana prompt üzerinde sadece istenen değişikliği yaparak yeni bir prompt oluştur.
 Tarzı, formatı ve diğer detayları koru. Çıktın sadece güncellenmiş prompt metni olsun.
 """
@@ -162,7 +167,7 @@ with st.sidebar:
         st_lottie(lottie_animation, height=150, key="ai_animation")
     
     st.markdown("---")
-    st.image("assets/reklam.png") # Kenar çubuğundaki tanıtım görseli
+    st.image("assets/reklam.jpg") # Kenar çubuğundaki tanıtım görseli
     st.markdown("---")
     st.markdown("Bu araç, görselleri analiz ederek onları yeniden yaratabileceğiniz sihirli prompt'lar üretir.")
     st.markdown("Geliştirici: **Akif Emre Demir**")
@@ -250,7 +255,7 @@ with st.container(border=True):
     st.caption("Bu galeri sadece sizin mevcut oturumunuz için geçerlidir ve tarayıcıyı kapattığınızda silinir.")
 
     if not st.session_state.gallery:
-        st.image("assets/reklam.png", caption="Kendi çalışmanızı oluşturmak için bir görsel yükleyin!")
+        st.image("assets/reklam.jpg", caption="Kendi çalışmanızı oluşturmak için bir görsel yükleyin!")
     else:
         # Galeriyi 3 sütunlu bir yapıda göster
         gallery_cols = st.columns(3)
