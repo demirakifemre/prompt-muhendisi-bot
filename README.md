@@ -43,7 +43,7 @@ Kullanıcı tarafından yüklenen görseller veya üretilen prompt'lar **hiçbir
 
 ## 🛠️ Kullanılan Yöntemler ve Çözüm Mimarisi 
 
-Proje, bootcamp istemlerinde belirtilen RAG (Retrieval-Augmented Generation) temelli bir chatbot mimarisi üzerine kurulmuştur[cite: 2, 23]. Proje, klasik RAG adımlarını modern ve multimodal bir yaklaşımla yorumlar:
+Proje, bootcamp istemlerinde belirtilen RAG (Retrieval-Augmented Generation) temelli bir chatbot mimarisi üzerine kurulmuştur. Proje, klasik RAG adımlarını modern ve multimodal bir yaklaşımla yorumlar:
 
 1.  **Retrieval (Bilgiyi Çekme):** Sistem, bilgiyi statik bir metin veritabanından çekmek yerine, kullanıcı tarafından o an yüklenen **görselin kendisinden** dinamik olarak çeker. Model, görseldeki pikselleri, renkleri, kompozisyonu ve stili analiz ederek "bilgi kaynağını" oluşturur.
 
@@ -63,7 +63,7 @@ Bu yapı, projenin sadece metinle değil, aynı zamanda görsel verilerle de ça
 
 ## ✅ Elde Edilen Sonuçlar
 
-Proje sonucunda, kullanıcı tarafından sağlanan herhangi bir görseli analiz edip, o görseli yeniden yaratmak için kullanılabilecek, teknik ve sanatsal detaylar içeren, profesyonel bir metin istemi (prompt) üreten bir web uygulaması başarıyla geliştirilmiştir[cite: 12]. [cite_start]Uygulama, kullanıcının bu prompt üzerinde değişiklik yapmasına ve bot ile sohbet etmesine olanak tanıyarak interaktif bir deneyim sunmaktadır[cite: 12]. Ayrıca, özel tasarım ve gizlilik notları ile kullanıcı deneyimi iyileştirilmiştir.
+Proje sonucunda, kullanıcı tarafından sağlanan herhangi bir görseli analiz edip, o görseli yeniden yaratmak için kullanılabilecek, teknik ve sanatsal detaylar içeren, profesyonel bir metin istemi (prompt) üreten bir web uygulaması başarıyla geliştirilmiştir. Uygulama, kullanıcının bu prompt üzerinde değişiklik yapmasına ve bot ile sohbet etmesine olanak tanıyarak interaktif bir deneyim sunmaktadır. Ayrıca, özel tasarım ve gizlilik notları ile kullanıcı deneyimi iyileştirilmiştir.
 
 ---
 
