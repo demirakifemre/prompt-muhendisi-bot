@@ -1,6 +1,6 @@
 # 🎨 AI Prompt Mühendisi Botu
 
-Bu proje,10millon.Ai,Global Ai Hub ve Akbank destekleriyle gerçekleştirilen  Bootcamp: Yeni Nesil Proje Kampı kapsamında geliştirilmiş, RAG (Retrieval Augmented Generation) temelli bir chatbottur[cite: 1, 2]. Uygulama, bir görseli analiz ederek onu yapay zeka sanat modellerinde (Midjourney, DALL-E, Nano Banana vb.) yeniden oluşturmak için kullanılabilecek detaylı metin istemleri (prompt) üreten interaktif bir web arayüzüne sahiptir.
+Bu proje,10millon.Ai,Global Ai Hub ve Akbank destekleriyle gerçekleştirilen  Bootcamp: Yeni Nesil Proje Kampı kapsamında geliştirilmiş, RAG (Retrieval Augmented Generation) temelli bir chatbottur. Uygulama, bir görseli analiz ederek onu yapay zeka sanat modellerinde (Midjourney, DALL-E, Nano Banana vb.) yeniden oluşturmak için kullanılabilecek detaylı metin istemleri (prompt) üreten interaktif bir web arayüzüne sahiptir.
 ![Uygulama Demosu](assets/demo.gif)
 
 
@@ -134,4 +134,4 @@ Galeriyi Keşfetme: Sayfanın alt kısmında, o anki oturumunuzda oluşturduğun
 (İsteğe Bağlı: Buraya uygulamanın kullanımını gösteren birkaç ekran görüntüsü veya kısa bir video linki ekleyebilirsin.) 
 
 ✍️ Geliştirici
-[Akif Emre Demir] - https://github.com/[demirakifemre]
+Akif Emre Demir - https://github.com/demirakifemre
