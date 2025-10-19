@@ -114,7 +114,7 @@ Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımlar�
 
 ## 🌐 Web Arayüzü & Product Kılavuzu
 
-* **Deploy Linki:** `[...Deploy linki...]`
+* **Deploy Linki:** `https://prompt-muhendisi-bot.streamlit.app/`
 
 ![Uygulama Ekran Görüntüsü](assets/screenshot.png)
 
