@@ -1,0 +1,13 @@
+# Sanal ortam klasörü - çok büyük ve gereksiz
+venv/
+.venv/
+
+# API anahtarları gibi gizli bilgileri içeren dosya
+.env
+
+# Python'un oluşturduğu geçici önbellek dosyaları
+__pycache__/
+*.pyc
+
+# Streamlit'in oluşturduğu geçici dosyalar (config.toml ve style.css GİTMEYECEK,
+# bu yüzden bu satırı eklemiyoruz ama aklında bulunsun)

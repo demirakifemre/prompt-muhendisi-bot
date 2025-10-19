@@ -1,0 +1,48 @@
+/* Ana Renk Değişkeni*/
+:root {
+  --primary-color: #ACC8A2; /* Soft Sage */
+  --background-color: #1A2517; /* Deep Olive */
+  --secondary-background-color: #2A3A29; /* Açık Olive */
+  --text-color: #FAFAFA; /* Beyaz */
+}
+
+/* Başlık ve Caption Ortala */
+h1, [data-testid="stCaptionContainer"] {
+    text-align: center;
+}
+
+/* Expander Başlığını Ortala */
+[data-testid="stExpander"] > summary { display: flex; justify-content: center; font-size: 1.1rem; width: 100%; }
+
+
+/* --- BUTONLARI YENİ RENKLERE UYARLAMA --- */
+button[data-testid="stBaseButton-secondary"] {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border: 1px solid var(--primary-color) !important; /* Kenarlık Soft Sage */
+    background-color: white !important; /* Arka plan Beyaz */
+    color: var(--background-color) !important; /* Yazı rengi Koyu Olive */
+    border-radius: 0.5rem;
+}
+
+button[data-testid="stBaseButton-secondary"]:hover {
+    transform: scale(1.03);
+    /* Soft Sage'in daha açık tonuyla bir gölge */
+    box-shadow: 0 4px 15px rgba(172, 200, 162, 0.4) !important; 
+    background-color: var(--primary-color) !important; /* Arka plan Soft Sage */
+    color: var(--background-color) !important; /* Yazı Koyu Olive kalsın */
+}
+/* --- --- */
+
+/* Konteynerlar */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    border-radius: 20px;
+    padding: 20px !important;
+    background-color: var(--secondary-background-color); /* Açık Olive */
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

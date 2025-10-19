@@ -1,0 +1,18 @@
+[theme]
+# Ana tema koyu kalacak
+base="dark"
+
+# Ana Vurgu Rengi (Butonlar, Linkler vb.)
+primaryColor="#ACC8A2" # Soft Sage
+
+# Ana Arka Plan Rengi
+backgroundColor="#1A2517" # Deep Olive
+
+# Konteynerlar gibi ikincil arka planlar için biraz daha açık bir ton
+secondaryBackgroundColor="#2A3A29" 
+
+# Metin Rengi (Koyu arka planla iyi kontrast için beyaz)
+textColor="#FAFAFA" 
+
+# Font tipi aynı kalabilir
+font="sans serif"
