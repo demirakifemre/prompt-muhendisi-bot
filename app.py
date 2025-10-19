@@ -1,4 +1,33 @@
 import streamlit as st
+import os # os modülünü de import edelim
+
+# --- GEÇİCİ TEŞHİS KODU ---
+st.write("--- TEŞHİS BAŞLANGIÇ ---")
+st.write("Streamlit Secrets Nesnesi:")
+st.write(st.secrets) # Secrets nesnesinin tamamını yazdır
+
+try:
+    st.write("Secrets içinden GOOGLE_API_KEY okunuyor...")
+    test_key = st.secrets["GOOGLE_API_KEY"]
+    st.write(f"GOOGLE_API_KEY bulundu! İlk 5 karakter: {test_key[:5]}...")
+    st.success("Secrets['GOOGLE_API_KEY'] başarıyla okundu.")
+except Exception as e:
+    st.write(f"HATA: st.secrets['GOOGLE_API_KEY'] okunurken hata oluştu: {e}")
+    st.error("Secrets['GOOGLE_API_KEY'] OKUNAMADI!")
+
+st.write("Ortam değişkeni (os.getenv) deneniyor...")
+test_key_env = os.getenv("GOOGLE_API_KEY")
+if test_key_env:
+     st.write(f"os.getenv ile anahtar bulundu! İlk 5 karakter: {test_key_env[:5]}...")
+else:
+     st.write("os.getenv ile anahtar BULUNAMADI.")
+
+st.write("--- TEŞHİS BİTTİ ---")
+st.divider()
+# --- ---
+
+from PIL import Image
+# ... (kodun geri kalanı aşağıda devam ediyor) ...
 from PIL import Image
 import google.generativeai as genai
 import os
@@ -44,15 +73,32 @@ except (FileNotFoundError, KeyError): # Hem dosya yoksa hem de anahtar yoksa yak
         print("HATA: .env dosyasında da API Anahtarı bulunamadı!")
         st.error("HATA: API Anahtarı bulunamadı! Lütfen .env dosyasını (lokal) veya Streamlit Secrets ayarlarını (cloud) kontrol edin.")
 
-# Google Generative AI istemcisini yapılandır (sadece api_key bulunduysa)
+# GÜNCELLENMİŞ API ANAHTARI OKUMA YÖNTEMİ
+api_key = None
+try:
+    # Doğrudan st.secrets kullanmayı dene
+    api_key = st.secrets["GOOGLE_API_KEY"]
+    print("API Anahtarı Streamlit Secrets'tan okundu (st.secrets ile).")
+except Exception as e: # Genel bir hata yakalama (KeyError, FileNotFoundError vb.)
+    print(f"st.secrets ile okuma başarısız ({e}), .env deneniyor...")
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if api_key:
+        print("API Anahtarı .env dosyasından okundu (os.getenv ile).")
+    else:
+        print("HATA: API Anahtarı ne Secrets'ta ne de .env'de bulunamadı!")
+        st.error("HATA: API Anahtarı bulunamadı!")
+
+# Google Generative AI istemcisini yapılandır
 if api_key:
     try:
         genai.configure(api_key=api_key)
+        # st.success("Google AI başarıyla yapılandırıldı.") # Bu mesajı geçici olarak kaldırabiliriz
     except Exception as e:
         st.error(f"API anahtarı yapılandırılamadı. Hata: {e}")
 else:
     st.error("Uygulama başlatılamadı: API Anahtarı eksik.")
-    st.stop() # API anahtarı yoksa uygulamayı durdur
+    st.stop()
 
 
 # Modelin güvenlik filtrelerini daha esnek bir seviyeye ayarla
@@ -167,7 +213,7 @@ with st.sidebar:
         st_lottie(lottie_animation, height=150, key="ai_animation")
     
     st.markdown("---")
-    st.image("assets/reklam.jpg") # Kenar çubuğundaki tanıtım görseli
+    st.image("assets/reklam.png") # Kenar çubuğundaki tanıtım görseli
     st.markdown("---")
     st.markdown("Bu araç, görselleri analiz ederek onları yeniden yaratabileceğiniz sihirli prompt'lar üretir.")
     st.markdown("Geliştirici: **Akif Emre Demir**")
@@ -255,7 +301,7 @@ with st.container(border=True):
     st.caption("Bu galeri sadece sizin mevcut oturumunuz için geçerlidir ve tarayıcıyı kapattığınızda silinir.")
 
     if not st.session_state.gallery:
-        st.image("assets/reklam.jpg", caption="Kendi çalışmanızı oluşturmak için bir görsel yükleyin!")
+        st.image("assets/reklam.png", caption="Kendi çalışmanızı oluşturmak için bir görsel yükleyin!")
     else:
         # Galeriyi 3 sütunlu bir yapıda göster
         gallery_cols = st.columns(3)
