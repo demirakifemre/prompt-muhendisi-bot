@@ -3,6 +3,19 @@ from PIL import Image
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
+# --- GEÇİCİ TEST KODU ---
+print("--- API Anahtarı Testi Başlıyor ---")
+load_dotenv() # .env dosyasını yüklemeyi dene (Cloud'da başarısız olacak)
+api_key_test = os.getenv("GOOGLE_API_KEY")
+
+if api_key_test:
+    print(f"API Anahtarı bulundu! İlk 5 karakter: {api_key_test[:5]}...") # Anahtarın tamamını yazdırma!
+    st.success("API Anahtarı ortam değişkenlerinden başarıyla okundu.") # Ekranda da görelim
+else:
+    print("HATA: API Anahtarı ortam değişkenlerinde bulunamadı!")
+    st.error("HATA: API Anahtarı ortam değişkenlerinde bulunamadı! Lütfen Streamlit Secrets ayarlarını kontrol edin.")
+print("--- API Anahtarı Testi Bitti ---")
+# --- GEÇİCİ TEST KODU BİTTİ ---
 from streamlit_lottie import st_lottie
 import requests
 
