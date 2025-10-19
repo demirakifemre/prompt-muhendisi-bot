@@ -77,7 +77,7 @@ Projeyi GitHub'dan bilgisayarınıza indirin ve proje klasörüne gidin:
 ```bash
 git clone [https://github.com/](https://github.com/)[SENIN-KULLANICI-ADIN]/prompt_muhendisi_bot.git
 cd prompt_muhendisi_bot
-2. Sanal Ortam Oluşturun ve Aktif Edin
+### 2. Sanal Ortam Oluşturun ve Aktif Edin
 Projenin bağımlılıklarını yönetmek için bir sanal ortam oluşturun ve aktif hale getirin:
 
 Bash
@@ -87,19 +87,19 @@ python -m venv venv
 .\venv\Scripts\activate
 (Mac/Linux kullanıyorsanız source venv/bin/activate komutunu kullanın.)
 
-3. Gerekli Kütüphaneleri Yükleyin
+### 3. Gerekli Kütüphaneleri Yükleyin
 Projenin ihtiyaç duyduğu tüm kütüphaneleri requirements.txt dosyasından yükleyin:
 
 Bash
 
 pip install -r requirements.txt
-4. API Anahtarınızı Ekleyin
+### 4. API Anahtarınızı Ekleyin
 Proje ana dizininde .env adında bir dosya oluşturun. İçine Google AI Studio'dan aldığınız API anahtarınızı aşağıdaki formatta ekleyin:
 
 GOOGLE_API_KEY="AIzaSy..."
 (Bu dosyanın .gitignore içinde olduğundan emin olun, API anahtarınızı asla GitHub'a yüklemeyin.)
 
-5. Uygulamayı Başlatın
+### 5. Uygulamayı Başlatın
 Streamlit uygulamasını başlatın:
 
 Bash
