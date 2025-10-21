@@ -130,8 +130,5 @@ Sonucu İnceleme: Sağ tarafta, görseliniz için üretilen detaylı prompt'u g�
 
 Galeriyi Keşfetme: Sayfanın alt kısmında, o anki oturumunuzda oluşturduğunuz tüm çalışmaları ve prompt'ları (orijinal ve güncellenmiş halleriyle) görebilirsiniz. Bu galerinin geçici olduğu bilgisi de burada yer almaktadır.
 
-
-(İsteğe Bağlı: Buraya uygulamanın kullanımını gösteren birkaç ekran görüntüsü veya kısa bir video linki ekleyebilirsin.) 
-
 ✍️ Geliştirici
 Akif Emre Demir - https://github.com/demirakifemre
